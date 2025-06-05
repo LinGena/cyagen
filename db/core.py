@@ -42,9 +42,12 @@ class Db():
             self.cursor.execute(sql, params)
         self.connection.commit()
 
-    def select(self, sql: str) -> list:
+    def select(self, sql: str, with_column_names=False) -> list:
         self.cursor.execute(sql)
         rows = self.cursor.fetchall() 
+        if with_column_names:
+            column_names = [desc[0] for desc in self.cursor.description]
+            return [dict(zip(column_names, row)) for row in rows]
         return rows
         
     def close_connection(self) -> None:

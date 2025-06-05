@@ -160,6 +160,10 @@ class GetPageContent():
                 EC.presence_of_element_located(criteria))
             self.driver.get(url)
             self.wait(30,(By.XPATH,'//*[@id="content_body"]/div/div/div[3]/div/div/div[1]/div/div[2]'))
+            try:
+                self.wait(30, By.XPATH,'//*[@id="content_body"]/div/div/div[3]/div/div/div[1]/div/div[2]/div/div[2]/table/tbody/tr[9]/td/div/span[1]')
+            except:
+                pass
             return self.driver.page_source
         except Exception as ex:
             # print(f'{url} ---- {ex}')
