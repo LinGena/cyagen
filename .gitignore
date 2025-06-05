@@ -1,0 +1,15 @@
+*.pyc
+__pycache
+__pycache__
+.DS_Store
+.env
+venv
+.idea
+.sentry-native/
+logs
+chrome_profiles
+*.pdf
+*.tsv
+extensions
+server.txt
+pages
