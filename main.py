@@ -33,7 +33,7 @@ def get_search():
     # rows = [(str(i),) for i in range(10)]
     # rows = [(letter,) for letter in string.ascii_letters]
     proxies = get_proxies()
-    with ThreadPoolExecutor(max_workers=os.getenv('THREADS_COUNT')) as executor:
+    with ThreadPoolExecutor(max_workers=int(os.getenv('THREADS_COUNT'))) as executor:
         futures = [
             executor.submit(fetch_and_parse, row[0], proxies)
             for row in rows if row
@@ -59,7 +59,7 @@ def get_content():
         driver.quit()
     except:
         pass
-    with ThreadPoolExecutor(max_workers=5) as executor:
+    with ThreadPoolExecutor(max_workers=int(os.getenv('THREADS_COUNT'))) as executor:
         futures = [
             executor.submit(page_fetch_and_parse, row[0], row[1], row[2], proxies)
             for row in rows if row
