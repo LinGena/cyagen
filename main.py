@@ -55,7 +55,9 @@ def get_content():
     model.close_connection()
     proxies = get_proxies()
     try:
-        driver = uc.Chrome(version_main=int(os.getenv('DRIVER_VERSION')))
+        options = uc.ChromeOptions()
+        options.add_argument('--headless=new')
+        driver = uc.Chrome(version_main=int(os.getenv('DRIVER_VERSION')), options=options)
         driver.quit()
     except:
         pass
