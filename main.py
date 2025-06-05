@@ -33,7 +33,7 @@ def get_search():
     # rows = [(str(i),) for i in range(10)]
     # rows = [(letter,) for letter in string.ascii_letters]
     proxies = get_proxies()
-    with ThreadPoolExecutor(max_workers=10) as executor:
+    with ThreadPoolExecutor(max_workers=os.getenv('THREADS_COUNT')) as executor:
         futures = [
             executor.submit(fetch_and_parse, row[0], proxies)
             for row in rows if row
